@@ -46,8 +46,10 @@ esac
 
 if [ "$ARCH" = "$(echo $(uname -m))" ]; then
     echo "Your system's architecture and target architecture are same."
+    CROSS_PLATFORM=false
 else
     echo "Your system's architecture and target architecture are not same."
+    CROSS_PLATFORM=true
 fi
 
 # # Check vmlinux's target arch is not same as host
@@ -68,10 +70,17 @@ read FUNC_NAME
 echo Function Name : $FUNC_NAME
 
 # TODO identify function's address in System.map
-LINE_NUMBER="$(
-    awk -v FUNC_NAME="/$FUNC_NAME/" 'do_group_exit {print "FUNC NAME: " FUNC_NAME}' System.map
-)"
+LINE_NUMBER="$(grep -n "$FUNC_NAME" System.map | cut -d ":" -f 1)"
+echo $LINE_NUMBER
+# LINE_NUMBER="$(
+#     awk -v FUNC_NAME="$FUNC_NAME" '/FUNC_NAME/ {print $1, $2, $3}' System.map
+# )"
 # grep -on "[a-z0-9_]*\n" > log Sys_map
+
+# awk '/^808771b0 t __schedule$/ {print NR}' System.map
+# awk '/__schedule/ {print $1, $2, $3 }' System.map
+# awk -v FUNC_NAME="/__schedule/" 'FUNC_NAME {print $1, $2, $3}' System.map
+
 echo $LINE_NUMBER
 # TODO select one options to disassemble vmlinux : wide-disasm or specific-disasm by address
 
