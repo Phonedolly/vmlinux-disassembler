@@ -43,7 +43,7 @@ case $ARCH_NUM in
 "3") ARCH="armv8" ;;
 esac
 
-if [ "$ARCH" = "$(echo $(uname -p))" ]; then
+if [ "$ARCH" = "$(echo $(uname -m))" ]; then
     echo "Your system's architecture and target architecture are same."
 else
     echo "Your system's architecture and target architecture are not same."
