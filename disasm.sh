@@ -81,7 +81,6 @@ echo $LINE_NUMBER
 # awk '/__schedule/ {print $1, $2, $3 }' System.map
 # awk -v FUNC_NAME="/__schedule/" 'FUNC_NAME {print $1, $2, $3}' System.map
 
-echo $LINE_NUMBER
 # TODO select one options to disassemble vmlinux : wide-disasm or specific-disasm by address
 
 # TODO disassemble vmlinux using objdump
