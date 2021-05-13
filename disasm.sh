@@ -31,16 +31,17 @@ fi
 
 # Select Proper Architecture for vmlinux
 echo -e "which is a architecture for your vmlinux?"
-echo "1. x86"
-echo "2. armv7"
+echo "1. x86_64"
+echo "2. x86"
+echo "3. armv7l"
 echo "3. armv8"
 read ARCH_NUM
 
 case $ARCH_NUM in
 "1") ARCH="x86_64" ;;
 "2") ARCH="x86" ;;
-"2") ARCH="armv7" ;;
-"3") ARCH="armv8" ;;
+"3") ARCH="armv7l" ;;
+"4") ARCH="armv8" ;;
 esac
 
 if [ "$ARCH" = "$(echo $(uname -m))" ]; then
